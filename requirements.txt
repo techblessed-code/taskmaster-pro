@@ -1,0 +1,5 @@
+# TaskMaster Pro - runtime dependencies
+Flask==3.1.3
+Flask-WTF==1.3.0
+email-validator==2.3.0
+python-dotenv==1.2.4

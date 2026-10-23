@@ -1,0 +1,34 @@
+
+{% extends "base.html" %}
+
+{% block title %}
+Home
+{% endblock %}
+
+{% block content %}
+
+<div class="hero">
+    <h1>Welcome to TaskMaster Pro</h1>
+    <p>Your ultimate task management solution</p>
+    <a href="/tasks" class="btn btn-primary">Get Started</a>
+</div>
+
+<div class="features">
+    <h2>Why Choose TaskMaster Pro?</h2>
+    <div class="feature-grid">
+        <div class="feature-card">
+            <h3>Simple</h3>
+            <p>Easy to use interface for managing all your tasks</p>
+        </div>
+        <div class="feature-card">
+            <h3>Powerful</h3>
+            <p>Advanced features to boost your productivity</p>
+        </div>
+        <div class="feature-card">
+            <h3>Secure</h3>
+            <p>Your data is safe with us</p>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

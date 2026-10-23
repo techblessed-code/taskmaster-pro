@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}Details{% endblock %}
+
+{% block content %}
+
+{# FIX: this block used to end with stray </body></html> tags that were
+   rendered in the middle of the page, and it only showed id/title/status -
+   priority, due date and the uploaded attachment are visible now. #}
+
+<h2>Selected Task</h2>
+
+<div class="task-card {{ task.status }}">
+    <h3>{{ task.id }}. {{ task.title }}</h3>
+    {% if task.description %}<p>{{ task.description }}</p>{% endif %}
+    <p>Status: {{ task.status }} &middot; Priority: {{ task.priority }}</p>
+    {% if task.due_date %}<p>Due: {{ task.due_date }}</p>{% endif %}
+    {% if task.attachment %}
+    <p>Attachment:
+        {# FIX: was url_for('static', filename='uploads/' + ...) - the upload
+           folder is outside static/, so the link always 404'd. #}
+        <a href="{{ url_for('uploaded_file', filename=task.attachment) }}">{{ task.attachment }}</a>
+    </p>
+    {% endif %}
+</div>
+
+<a href="{{ url_for('tasks') }}" class="btn btn-small">Back to tasks</a>
+
+{% endblock %}

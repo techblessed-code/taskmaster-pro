@@ -1,0 +1,63 @@
+
+
+{# FIX: the lines above the doctype used to be accidental pasted Gmail UI
+   text ("Skip to content / Using Gmail with screen readers / ... Ameh
+   Emmanuel <...> 11:53 AM ...") sitting BEFORE <!DOCTYPE html> - it was
+   rendered as visible garbage at the top of every page. Removed. #}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TaskMaster Pro | {% block title %}{% endblock %}</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="container">
+            <a href="/" class="logo">TaskMaster Pro</a>
+
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/tasks">Tasks</a></li>
+                <li><a href="/task/new">Create Task</a></li>
+                <li><a href="/contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+
+        {# NEW: flash messages belong on every page (the contact flash and
+           the create-task flash used to have nowhere to show except one
+           template's private block). #}
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2024 TaskMaster Pro. All rights reserved.</p>
+        </div>
+    </footer>
+
+    {# FIX: the path said scripts/main.js but the file lives in static/js/ -
+       every page used to request a 404 for its JavaScript. #}
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+</body>
+</html>

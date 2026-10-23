@@ -1,0 +1,32 @@
+{# FIX: this template wrapped a full <!DOCTYPE html><html><head><body>
+   around `{% extends "base.html" %}` - a child template must contain ONLY
+   the extends tag and its blocks; the stray wrapper was dead text. #}
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>My Tasks</h1>
+
+<div class="task-list">
+
+    {% for task in tasks %}
+
+    <div class="task-card {{ task.status }}">
+        <h3>{{ task.title }}</h3>
+        <p>Status: {{ task.status }}</p>
+        <a href="/tasks/{{ task.id }}" class="btn btn-small">View Details</a>
+    </div>
+
+    {% else %}
+
+    <p>No tasks found. Create your first task!</p>
+
+    {% endfor %}
+
+</div>
+
+<a href="/task/new" class="btn btn-primary">Create New Task</a>
+
+{% endblock %}
+
+{# FIX: stray </body></html> tags used to sit here, inside a child template. #}

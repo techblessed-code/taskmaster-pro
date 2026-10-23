@@ -1,0 +1,19 @@
+{# DEAD TEMPLATE - never used by any view. Task details are rendered by
+   task_detail.html (which shows description/priority/due date/attachment).
+   Kept per the project rule: dead code is commented with an explanation,
+   not deleted. #}
+
+{% extends "base.html" %}
+
+{% block title %}
+Task {{ task.title }}
+{% endblock %}
+
+{% block content %}
+
+<div class="task-card {{ task.status }}">
+    <h3>{{ task.id }} {{ task.title }}</h3>
+    <p>Status: {{ task.status }}</p>
+</div>
+
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %}Contact{% endblock %}
+
+{% block content %}
+
+{# NEW FILE: /contact and the navbar's Contact link rendered this template,
+   which did not exist - a guaranteed 500. Same form style as
+   create_task.html. #}
+
+<div class="form-container">
+    <h1>Contact Us</h1>
+
+    <form method="POST">
+        {{ form.hidden_tag() }}  <!--CSRF protection-->
+
+        <div class="form-group">
+            {{ form.name.label }}
+            {{ form.name(class="form-control") }}
+            {% if form.name.errors %}
+                <div class="error-message">
+                    {% for error in form.name.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            {{ form.email.label }}
+            {{ form.email(class="form-control") }}
+            {% if form.email.errors %}
+                <div class="error-message">
+                    {% for error in form.email.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            {{ form.message.label }}
+            {{ form.message(class="form-control", rows=6) }}
+            {% if form.message.errors %}
+                <div class="error-message">
+                    {% for error in form.message.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+
+        <button type="submit" class="btn btn-primary">Send Message</button>
+        <a href="{{ url_for('home') }}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+
+{% endblock %}

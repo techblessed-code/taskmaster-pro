@@ -1,0 +1,3 @@
+# The original file was named "reqiurement.txt" (misspelled) AND was empty,
+# so the project's dependencies were never recorded. The real list lives in
+# requirements.txt - this file is kept only as a marker.
