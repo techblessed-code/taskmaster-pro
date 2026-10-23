@@ -205,4 +205,7 @@ def internal_server_error(e):
 
 # Run Flask App
 if __name__ == '__main__':
-    app.run(debug=True, port=5000)
+    # FIX: the port is configurable so another server squatting on 5000
+    # can never make this app impossible to start:
+    #   $env:PORT=5002; python app.py
+    app.run(debug=True, port=int(os.environ.get('PORT', 5000)))
